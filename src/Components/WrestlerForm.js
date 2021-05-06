@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import addWrestler from '../helpers/data/wrestlerData';
+import { addWrestler } from '../helpers/data/wrestlerData';
 
 export default function WrestlerForm() {
   const [wrestler, setWrestler] = useState({
     name: '',
     conference: '',
-    imageUrl: 0
+    imageUrl: ''
   });
 
   const handleInputChange = (e) => {
@@ -48,7 +48,7 @@ export default function WrestlerForm() {
     <input
         name='picture'
         type='text'
-        placeholder='imageUrl'
+        placeholder='Image'
         value={wrestler.imageUrl}
         onChange={handleInputChange}
     ></input>
