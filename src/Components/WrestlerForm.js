@@ -5,7 +5,6 @@ export default function WrestlerForm() {
   const [wrestler, setWrestler] = useState({
     name: '',
     conference: '',
-    imageUrl: ''
   });
 
   const handleInputChange = (e) => {
@@ -42,14 +41,6 @@ export default function WrestlerForm() {
         type='text'
         placeholder='conference'
         value={wrestler.conference}
-        onChange={handleInputChange}
-    ></input>
-    <label>Picture: </label>
-    <input
-        name='picture'
-        type='text'
-        placeholder='Image'
-        value={wrestler.imageUrl}
         onChange={handleInputChange}
     ></input>
     <button type="submit">Submit</button>
