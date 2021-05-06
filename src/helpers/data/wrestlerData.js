@@ -3,6 +3,12 @@ import firebaseConfig from '../apiKeys';
 
 const dbUrl = firebaseConfig.databaseURL;
 
+const getWrestler = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/wwe.json`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
 const addWrestler = (wrestler) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/wwe.json`, wrestler)
     .then((response) => {
@@ -13,4 +19,4 @@ const addWrestler = (wrestler) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default addWrestler;
+export { addWrestler, getWrestler };
