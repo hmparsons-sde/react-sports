@@ -5,23 +5,23 @@ import WrestlerForm from '../Components/WrestlerForm';
 import './App.scss';
 
 function App() {
-  const [wrestler, setWrestler] = useState([]);
+  const [wrestler, setWrestlers] = useState([]);
 
   useEffect(() => {
-    getWrestler().then((resp) => setWrestler(resp));
+    getWrestler().then((resp) => setWrestlers(resp));
   }, []);
 
   return (
     <div className='App'>
-      <WrestlerForm formTitle='Form Title'/>
-      <hr/>
+      <WrestlerForm formTitle='Add Wrestler' setWrestlers={setWrestlers} />
+      <hr />
       {wrestler.map((wrestlerInfo) => (
         <WrestlerCard
           key={wrestlerInfo.firebaseKey}
+          firebaseKey={wrestlerInfo.firebaseKey}
           name={wrestlerInfo.name}
           conference={wrestlerInfo.conference}
-          imageUrl={wrestlerInfo.imageUrl}
-          handleClick={() => console.warn(`${wrestlerInfo.name}'s conference is ${wrestlerInfo.conference}`)}
+          setWrestlers={setWrestlers}
         />
       ))}
     </div>
