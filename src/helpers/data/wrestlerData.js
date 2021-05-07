@@ -33,6 +33,13 @@ const updateWrestler = (wrestler) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getSingleWrestler = (firebaseKey) => new Promise((resolve, reject) => {
+  axios
+    .get(`${dbUrl}/wwe/${firebaseKey}.json`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
 export {
-  addWrestler, getWrestler, deleteWrestler, updateWrestler
+  addWrestler, getWrestler, deleteWrestler, updateWrestler, getSingleWrestler
 };

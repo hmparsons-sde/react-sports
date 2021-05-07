@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import {
   Button,
   Card,
@@ -17,6 +18,8 @@ const WrestlerCard = ({
   setWrestlers
 }) => {
   const [editing, setEditing] = useState(false);
+  const history = useHistory();
+
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
@@ -30,12 +33,19 @@ const WrestlerCard = ({
         console.warn('nothing selected');
     }
   };
-  console.warn(firebaseKey);
+
+  function viewWrestler() {
+    history.push(`/wrestlers/${firebaseKey}`);
+  }
+
   return (
   <Card body>
       <CardTitle></CardTitle>
       <CardSubtitle tag="h5">{name}</CardSubtitle>
       <CardText>Conference: {conference}</CardText>
+      <Button color="warning" onClick={viewWrestler}>
+        View Wrestler
+      </Button>
       <Button color="danger" onClick={() => handleClick('delete')}>Delete Wrestler</Button>
       <Button color="info" onClick={() => handleClick('edit')}>
         {editing ? 'Close Form' : 'Edit Wrestler'}
