@@ -1,4 +1,10 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 @import 'variables';
 @import 'cards';
 @import 'form';
+
+body {
+  text-align: center;
+  background: linear-gradient(to bottom right, #635687, #a2639b);
+}
