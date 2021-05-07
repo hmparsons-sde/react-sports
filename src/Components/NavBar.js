@@ -17,6 +17,17 @@ const NavBar = ({ user }) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const authenticated = () => (
+        <>
+          <NavItem>
+            <Link className="nav-link" to="/wrestlers">Wrestlers</Link>
+          </NavItem>
+          <NavItem>
+            <Link className="nav-link" to="/add-wrestlers/">Add Wrestlers</Link>
+          </NavItem>
+        </>
+  );
+
   return (
     <div>
       <Navbar color="light" light expand="md">
@@ -24,12 +35,7 @@ const NavBar = ({ user }) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <Link className="nav-link" to="/wrestlers">Wrestlers</Link>
-            </NavItem>
-            <NavItem>
-              <Link className="nav-link" to="/add-wrestlers/">Add Wrestlers</Link>
-            </NavItem>
+          { user && authenticated()}
             {
               user !== null
               && <NavItem>

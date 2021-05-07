@@ -3,33 +3,33 @@ import firebaseConfig from '../apiKeys';
 
 const dbUrl = firebaseConfig.databaseURL;
 
-const getWrestler = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/wwe.json`)
+const getWrestler = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/wwe.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
 
-const deleteWrestler = (firebaseKey) => new Promise((resolve, reject) => {
+const deleteWrestler = (firebaseKey, uid) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/wwe/${firebaseKey}.json`)
-    .then(() => getWrestler().then((wrestlersArray) => resolve(wrestlersArray)))
+    .then(() => getWrestler(uid).then((wrestlersArray) => resolve(wrestlersArray)))
     .catch((error) => reject(error));
 });
 
-const addWrestler = (wrestler) => new Promise((resolve, reject) => {
+const addWrestler = (wrestler, uid) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/wwe.json`, wrestler)
     .then((response) => {
       const body = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/wwe/${response.data.name}.json`, body)
         .then(() => {
-          getWrestler().then((wrestlersArray) => resolve(wrestlersArray));
+          getWrestler(uid).then((wrestlersArray) => resolve(wrestlersArray));
         });
     })
     .catch((error) => reject(error));
 });
 
-const updateWrestler = (wrestler) => new Promise((resolve, reject) => {
+const updateWrestler = (wrestler, uid) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/wwe/${wrestler.firebaseKey}.json`, wrestler)
-    .then(() => getWrestler().then(resolve))
+    .then(() => getWrestler(uid).then(resolve))
     .catch((error) => reject(error));
 });
 

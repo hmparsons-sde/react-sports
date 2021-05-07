@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WrestlerCard from '../Components/WrestlerCard';
 
-function WrestlerView({ wrestlers, setWrestlers }) {
+export default function WrestlerView({ user, wrestlers, setWrestlers }) {
   return (
     <>
       <div className="card-container">
-        {wrestlers.map((wrestlerInfo) => (
+        {wrestlers.map((wrestler) => (
           <WrestlerCard
-            key={wrestlerInfo.firebaseKey}
-            firebaseKey={wrestlerInfo.firebaseKey}
-            name={wrestlerInfo.name}
-            conference={wrestlerInfo.conference}
+            key={wrestler.firebaseKey}
+            user={user}
             setWrestlers={setWrestlers}
+            {...wrestler}
           />
         ))}
       </div>
@@ -22,7 +21,6 @@ function WrestlerView({ wrestlers, setWrestlers }) {
 
 WrestlerView.propTypes = {
   wrestlers: PropTypes.array,
-  setWrestlers: PropTypes.func
+  setWrestlers: PropTypes.func,
+  user: PropTypes.any
 };
-
-export default WrestlerView;

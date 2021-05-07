@@ -1,19 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-function Home({ user }) {
+function Home() {
   return (
-    <div>
-      { user
-        ? <h1>Hello, {user.fullName}</h1>
-        : <h1>Hello, World!</h1>
-      }
+    <div id="logo">
+      <img id="wwe-logo" src="https://411mania.com/wp-content/uploads/2019/04/wrestlemania1-645x370.jpg"></img>
     </div>
   );
 }
-
-Home.propTypes = {
-  user: PropTypes.any
-};
 
 export default Home;
