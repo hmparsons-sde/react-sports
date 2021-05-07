@@ -4,7 +4,7 @@ import {
   Card,
   CardSubtitle,
   CardText,
-  CardTitle
+  CardImg
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { deleteWrestler } from '../helpers/data/wrestlerData';
@@ -29,8 +29,8 @@ export default function WrestlerCard({ setWrestlers, user, ...wrestler }) {
   return (
     <div>
       <Card body>
-        <CardTitle><img id='cardImage' src={wrestler.imageUrl}></img></CardTitle>
-        <CardSubtitle tag="h5">{wrestler.name}</CardSubtitle>
+      <CardImg className='mx-auto d-block' id='playerImg' src={wrestler.imageUrl} alt="Card image cap" />
+        <CardSubtitle tag="h5" className='mt-3'>{wrestler.name}</CardSubtitle>
         <CardText>Conference: {wrestler.conference}</CardText>
         <div id='buttons'>
         <Button color="danger" onClick={() => handleClick('delete')}>Delete Wrestler</Button>
