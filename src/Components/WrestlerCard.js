@@ -7,24 +7,34 @@ import {
   CardTitle
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { deleteWrestler } from '../helpers/data/wrestlerData';
 
 const WrestlerCard = ({
+  firebaseKey,
   name,
   conference,
-  handleClick
-}) => (
+  setWrestlers
+}) => {
+  const handleClick = () => {
+    deleteWrestler(firebaseKey)
+      .then((wrestlersArray) => setWrestlers(wrestlersArray));
+  };
+  console.warn(firebaseKey);
+  return (
   <Card body>
       <CardTitle></CardTitle>
       <CardSubtitle tag="h5">{name}</CardSubtitle>
       <CardText>Conference: {conference}</CardText>
-      {handleClick ? <Button onClick={handleClick}>View Wrestler</Button> : ''}
+      <Button color="danger" onClick={handleClick}>Delete Wrestler</Button>
   </Card>
-);
+  );
+};
 
 WrestlerCard.propTypes = {
+  firebaseKey: PropTypes.string,
   name: PropTypes.string,
   conference: PropTypes.string,
-  handleClick: PropTypes.func
+  setWrestlers: PropTypes.func
 };
 
 export default WrestlerCard;

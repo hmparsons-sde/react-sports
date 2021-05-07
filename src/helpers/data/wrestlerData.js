@@ -9,6 +9,12 @@ const getWrestler = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const deleteWrestler = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/wwe/${firebaseKey}.json`)
+    .then(() => getWrestler().then((wrestlersArray) => resolve(wrestlersArray)))
+    .catch((error) => reject(error));
+});
+
 const addWrestler = (wrestler) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/wwe.json`, wrestler)
     .then((response) => {
@@ -19,4 +25,4 @@ const addWrestler = (wrestler) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { addWrestler, getWrestler };
+export { addWrestler, getWrestler, deleteWrestler };
