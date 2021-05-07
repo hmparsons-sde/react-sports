@@ -8,14 +8,15 @@ import { addWrestler, updateWrestler } from '../helpers/data/wrestlerData';
 const WrestlerForm = ({
   formTitle,
   setWrestlers,
-  name,
-  conference,
-  firebaseKey
+  user,
+  ...wrestlerObj
 }) => {
   const [wrestler, setWrestler] = useState({
-    name: name || '',
-    conference: conference || '',
-    firebaseKey: firebaseKey || null
+    imageUrl: wrestlerObj?.imageUrl || '',
+    name: wrestlerObj?.name || '',
+    conference: wrestlerObj?.conference || '',
+    firebaseKey: wrestlerObj?.firebaseKey || null,
+    uid: wrestlerObj?.uid || user.uid
   });
 
   const handleInputChange = (e) => {
@@ -28,9 +29,9 @@ const WrestlerForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (wrestler.firebaseKey) {
-      updateWrestler(wrestler).then((wrestlersArray) => setWrestlers(wrestlersArray));
+      updateWrestler(wrestler, wrestlerObj.uid).then((wrestlersArray) => setWrestlers(wrestlersArray));
     } else {
-      addWrestler(wrestler).then((wrestlersArray) => setWrestlers(wrestlersArray));
+      addWrestler(wrestler, user.uid).then((wrestlersArray) => setWrestlers(wrestlersArray));
     }
   };
 
@@ -49,7 +50,15 @@ const WrestlerForm = ({
             onChange={handleInputChange}
           />
         </FormGroup>
-
+        <FormGroup>
+        <Label>Image URL: </Label>
+         <Input
+            name='imageUrl'
+            type='text'
+            value={wrestler.imageUrl}
+            onChange={handleInputChange}
+          ></Input>
+        </FormGroup>
         <FormGroup>
           <Label for="conference">Conference:</Label>
           <Input
@@ -70,9 +79,7 @@ const WrestlerForm = ({
 WrestlerForm.propTypes = {
   formTitle: PropTypes.string,
   setWrestlers: PropTypes.func,
-  name: PropTypes.string,
-  conference: PropTypes.string,
-  firebaseKey: PropTypes.string,
+  user: PropTypes.uid
 };
 
 export default WrestlerForm;

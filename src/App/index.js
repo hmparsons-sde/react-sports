@@ -9,40 +9,36 @@ import NavBar from '../Components/NavBar';
 
 function App() {
   const [wrestlers, setWrestlers] = useState([]);
-  const [user, setUser] = useState(null); // Null because nobody is signed in from the beginning.
-
-  useEffect(() => {
-    getWrestler().then(setWrestlers);
-  }, []);
-  // useEffect is a "lifecycle hook"
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
       if (authed) {
-        const userInfoObject = {
+        const userInfoObj = {
           fullName: authed.displayName,
           profileImage: authed.photoURL,
           uid: authed.uid,
-          username: authed.email.split('@gmail.com')[0]
+          userName: authed.email.split('@')[0]
         };
-
-        setUser(userInfoObject);
+        getWrestler(authed.uid).then((wrestlersArray) => setWrestlers(wrestlersArray));
+        setUser(userInfoObj);
       } else if (user || user === null) {
         setUser(false);
+        setWrestlers([]);
       }
     });
   }, []);
 
   return (
     <>
-      <Router>
-        <NavBar user={user}/>
-        <Routes
-          user={user}
-          wrestlers={wrestlers}
-          setWrestlers={setWrestlers}
-        />
-      </Router>
+    <Router>
+      <NavBar user={user}/>
+      <Routes
+      wrestlers={wrestlers}
+      setWrestlers={setWrestlers}
+      user={user}
+      />
+    </Router>
     </>
   );
 }

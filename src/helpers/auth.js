@@ -1,5 +1,4 @@
 import firebase from 'firebase/app';
-import firebaseConfig from './apiKeys';
 
 const signInUser = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -9,8 +8,6 @@ const signInUser = () => {
 const signOutUser = () => new Promise((resolve, reject) => {
   firebase.auth().signOut().then(resolve).catch(reject);
 });
-
-firebase.initializeApp(firebaseConfig);
 
 export { signInUser, signOutUser };
 

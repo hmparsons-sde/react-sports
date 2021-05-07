@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
 import {
   Button,
   Card,
@@ -11,19 +10,12 @@ import PropTypes from 'prop-types';
 import { deleteWrestler } from '../helpers/data/wrestlerData';
 import WrestlerForm from './WrestlerForm';
 
-const WrestlerCard = ({
-  firebaseKey,
-  name,
-  conference,
-  setWrestlers
-}) => {
+export default function WrestlerCard({ setWrestlers, user, ...wrestler }) {
   const [editing, setEditing] = useState(false);
-  const history = useHistory();
-
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
-        deleteWrestler(firebaseKey)
+        deleteWrestler(wrestler.firebaseKey, user.uid)
           .then((wrestlerArray) => setWrestlers(wrestlerArray));
         break;
       case 'edit':
@@ -34,40 +26,35 @@ const WrestlerCard = ({
     }
   };
 
-  function viewWrestler() {
-    history.push(`/wrestlers/${firebaseKey}`);
-  }
-
   return (
-  <Card body>
-      <CardTitle></CardTitle>
-      <CardSubtitle tag="h5">{name}</CardSubtitle>
-      <CardText>Conference: {conference}</CardText>
-      <Button color="warning" onClick={viewWrestler}>
-        View Wrestler
-      </Button>
-      <Button color="danger" onClick={() => handleClick('delete')}>Delete Wrestler</Button>
-      <Button color="info" onClick={() => handleClick('edit')}>
-        {editing ? 'Close Form' : 'Edit Wrestler'}
-      </Button>
-      {
-        editing && <WrestlerForm
-          formTitle='Edit Wrestler'
-          setWrestlers={setWrestlers}
-          firebaseKey={firebaseKey}
-          name={name}
-          conference={conference}
-        />
-      }
-  </Card>
+    <div>
+      <Card body>
+        <CardTitle><img id='cardImage' src={wrestler.imageUrl}></img></CardTitle>
+        <CardSubtitle tag="h5">{wrestler.name}</CardSubtitle>
+        <CardText>Conference: {wrestler.conference}</CardText>
+        <div id='buttons'>
+        <Button color="danger" onClick={() => handleClick('delete')}>Delete Wrestler</Button>
+        <Button color="info" onClick={() => handleClick('edit')}>
+          {editing ? 'Close Form' : 'Edit Wrestler'}
+        </Button>
+        </div>
+        {
+          editing && <WrestlerForm
+            formTitle='Edit Wrestler'
+            setWrestlers={setWrestlers}
+            {...wrestler}
+          />
+        }
+    </Card>
+  </div>
   );
-};
+}
 
 WrestlerCard.propTypes = {
   firebaseKey: PropTypes.string,
+  imageUrl: PropTypes.string,
   name: PropTypes.string,
   conference: PropTypes.string,
-  setWrestlers: PropTypes.func
+  setWrestlers: PropTypes.func,
+  user: PropTypes.any
 };
-
-export default WrestlerCard;
