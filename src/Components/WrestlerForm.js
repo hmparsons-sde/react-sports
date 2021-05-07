@@ -3,12 +3,19 @@ import {
   Button, Form, FormGroup, Label, Input
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { addWrestler } from '../helpers/data/wrestlerData';
+import { addWrestler, updateWrestler } from '../helpers/data/wrestlerData';
 
-const WrestlerForm = ({ formTitle, setWrestlers }) => {
+const WrestlerForm = ({
+  formTitle,
+  setWrestlers,
+  name,
+  conference,
+  firebaseKey
+}) => {
   const [wrestler, setWrestler] = useState({
-    name: '',
-    conference: '',
+    name: name || '',
+    conference: conference || '',
+    firebaseKey: firebaseKey || null
   });
 
   const handleInputChange = (e) => {
@@ -20,7 +27,11 @@ const WrestlerForm = ({ formTitle, setWrestlers }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addWrestler(wrestler).then((wrestlersArray) => setWrestlers(wrestlersArray));
+    if (wrestler.firebaseKey) {
+      updateWrestler(wrestler).then((wrestlersArray) => setWrestlers(wrestlersArray));
+    } else {
+      addWrestler(wrestler).then((wrestlersArray) => setWrestlers(wrestlersArray));
+    }
   };
 
   return (
@@ -58,7 +69,10 @@ const WrestlerForm = ({ formTitle, setWrestlers }) => {
 
 WrestlerForm.propTypes = {
   formTitle: PropTypes.string,
-  setWrestlers: PropTypes.func
+  setWrestlers: PropTypes.func,
+  name: PropTypes.string,
+  conference: PropTypes.string,
+  firebaseKey: PropTypes.string,
 };
 
 export default WrestlerForm;

@@ -20,9 +20,19 @@ const addWrestler = (wrestler) => new Promise((resolve, reject) => {
     .then((response) => {
       const body = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/wwe/${response.data.name}.json`, body)
-        .then(() => resolve(console.warn('Wrestler Added', wrestler)));
+        .then(() => {
+          getWrestler().then((wrestlersArray) => resolve(wrestlersArray));
+        });
     })
     .catch((error) => reject(error));
 });
 
-export { addWrestler, getWrestler, deleteWrestler };
+const updateWrestler = (wrestler) => new Promise((resolve, reject) => {
+  axios.patch(`${dbUrl}/wwe/${wrestler.firebaseKey}.json`, wrestler)
+    .then(() => getWrestler().then(resolve))
+    .catch((error) => reject(error));
+});
+
+export {
+  addWrestler, getWrestler, deleteWrestler, updateWrestler
+};
