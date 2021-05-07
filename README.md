@@ -8,7 +8,7 @@
 
 ## Primary Color Palette
 
-![2021-05-07](https://user-images.githubusercontent.com/67122062/117508333-03bd9c80-af4e-11eb-9d7c-3b2c75db5727.png)
+![dull-purple-gradient-by-schemecolor (1)](https://user-images.githubusercontent.com/67122062/117508374-1506a900-af4e-11eb-990f-14e00b202b1d.png)
 
 ## Accent Color Palette
 
