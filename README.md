@@ -1,33 +1,32 @@
-## Sports Roster
+## Wrestlemania Throwback
 
-Here are the user stories that need to be completed:
+### Project Objective
 
-### Authentication
+- Demonstrate proficient application of React.js, Router, React Router DOM, Private Routes, and User Authentication.
+- Benchmark progress with componentization and utilizing bundled webpacks.
+- Full CRUD, Axios calls, and Firebase Realtime Database.
 
-- As a user, who is logged out, I should only be able to see the authentication screen
-- As a user who is logged out, I would like to be able to authenticate by clicking on a button.
-- As a user who is logged out, I would like to be able to click on an authentication button and login via google.
-- As a user who is logged in, I should not be able to see the authentication button.
-- As a user who is logged in, I should be able to see the Team component.
+### Accent Color Palette
 
-### CREATE Players
+![80s-retro-by-schemecolor](https://user-images.githubusercontent.com/67122062/117507524-c0aef980-af4c-11eb-90de-4aa9610fdb5c.png)
 
-- As an authenticated user, I should be able to click a button that displays a form to add a new player.
-- As an authenticated user, when I fill out the form and submit a new Player should be created in firebase and should now show in my Team component.
+### Deployed App
 
-### READ Players
+### User Stories
 
-- As an authenticated user, I should be able to see the Team component with all the players I have created.
-- As an authenticated user I should not be able to see players that were created by another user.
+- A visitor to the site is met with a page prompting Google authentication. Logged out users can only access this landing page and must log in before the other features are available.
+- Authenticated users can see and use a navigation bar to visit the "Wrestlers" page or the "Add Wrestler" page.
+- On the "Wrestlers" page, the user can view, edit, or delete wrestler cards. 
+- On the "Add Wrestlers" page, the user can create a new wrestler card.
+- A user can only view cards that they have created.
+- Create, Edit, and Delete functions will reflect in the Firebase Realtime Database.
 
-### UPDATE Players
+### Feature List
 
-- As an authenticated user, I should be able to see an edit button on each player card.
-- As an authenticated user, when I click the edit button I should see a form with the player information for that user pre-populated.
-- As an authenticated user, I should be able to edit the information in the form and hit the submit button.
-- As an authenticated user, when I submit the edit form firebase should be updated (PUT request) and the Team component should update
+- User Authentication
+- Full-cycle CRUD
+- Dynamic & Private Routes
 
-### DELETE Players
+### Contributors
 
-- As an authenticated user, I should see a delete button on each player.
-- As an authenticated user, when I click a delete button that player should be removed from firebase and the Team component should update.
+@hmparsons-sde
