@@ -20,7 +20,6 @@ function App() {
           key={wrestlerInfo.firebaseKey}
           name={wrestlerInfo.name}
           conference={wrestlerInfo.conference}
-          imageUrl={wrestlerInfo.imageUrl}
           handleClick={() => console.warn(`${wrestlerInfo.name}'s conference is ${wrestlerInfo.conference}`)}
         />
       ))}
