@@ -15,6 +15,7 @@ function App() {
     <div className='App'>
       <WrestlerForm formTitle='Add Wrestler' setWrestlers={setWrestlers} />
       <hr />
+      <div className="card-container">
       {wrestler.map((wrestlerInfo) => (
         <WrestlerCard
           key={wrestlerInfo.firebaseKey}
@@ -24,6 +25,7 @@ function App() {
           setWrestlers={setWrestlers}
         />
       ))}
+      </div>
     </div>
   );
 }

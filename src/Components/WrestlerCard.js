@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Card,
@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { deleteWrestler } from '../helpers/data/wrestlerData';
+import WrestlerForm from './WrestlerForm';
 
 const WrestlerCard = ({
   firebaseKey,
@@ -15,9 +16,19 @@ const WrestlerCard = ({
   conference,
   setWrestlers
 }) => {
-  const handleClick = () => {
-    deleteWrestler(firebaseKey)
-      .then((wrestlersArray) => setWrestlers(wrestlersArray));
+  const [editing, setEditing] = useState(false);
+  const handleClick = (type) => {
+    switch (type) {
+      case 'delete':
+        deleteWrestler(firebaseKey)
+          .then((wrestlerArray) => setWrestlers(wrestlerArray));
+        break;
+      case 'edit':
+        setEditing((prevState) => !prevState);
+        break;
+      default:
+        console.warn('nothing selected');
+    }
   };
   console.warn(firebaseKey);
   return (
@@ -25,7 +36,19 @@ const WrestlerCard = ({
       <CardTitle></CardTitle>
       <CardSubtitle tag="h5">{name}</CardSubtitle>
       <CardText>Conference: {conference}</CardText>
-      <Button color="danger" onClick={handleClick}>Delete Wrestler</Button>
+      <Button color="danger" onClick={() => handleClick('delete')}>Delete Wrestler</Button>
+      <Button color="info" onClick={() => handleClick('edit')}>
+        {editing ? 'Close Form' : 'Edit Wrestler'}
+      </Button>
+      {
+        editing && <WrestlerForm
+          formTitle='Edit Wrestler'
+          setWrestlers={setWrestlers}
+          firebaseKey={firebaseKey}
+          name={name}
+          conference={conference}
+        />
+      }
   </Card>
   );
 };
