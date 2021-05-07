@@ -6,11 +6,17 @@
 - Benchmark progress with componentization and utilizing bundled webpacks.
 - Full CRUD, Axios calls, and Firebase Realtime Database.
 
+## Primary Color Palette
+
+![dull-purple-gradient-by-schemecolor](https://user-images.githubusercontent.com/67122062/117508172-c22cf180-af4d-11eb-9a4e-45c9f0298454.png)
+
 ## Accent Color Palette
 
 ![80s-retro-by-schemecolor](https://user-images.githubusercontent.com/67122062/117507524-c0aef980-af4c-11eb-90de-4aa9610fdb5c.png)
 
 ## Deployed App
+
+(Coming soon)
 
 ## User Stories
 
