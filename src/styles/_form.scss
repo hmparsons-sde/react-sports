@@ -1,9 +1,17 @@
 Form {
   margin: auto;
   padding-top: 50px;
-  width: 40%;
+  width: 30%;
+  height: 700px;
+  font-family: 'Lato', sans-serif;
 
   h2 {
     text-align: center;
+    color: $aquaBlue;
+    margin-bottom: 25px;
+  }
+
+  FormGroup {
+    margin: 15px;
   }
 }

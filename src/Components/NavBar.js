@@ -29,20 +29,20 @@ const NavBar = ({ user }) => {
   );
 
   return (
-    <div>
-      <Navbar color="light" light expand="md">
+    <div id="navbar">
+      <Navbar className="text-center" light expand="md">
         <NavbarBrand href="/">Wrestlemania Throwback</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="mx-auto text-center" navbar>
           { user && authenticated()}
             {
               user !== null
-              && <NavItem>
+              && <NavItem className="clearfix">
                 {
                   user
-                    ? <Button color='danger' onClick={signOutUser}>Log Out</Button>
-                    : <Button color='info' onClick={signInUser}>Log In</Button>
+                    ? <Button color='danger' className='ml-3 float-right' onClick={signOutUser}>Log Out</Button>
+                    : <Button color='info' className='ml-3 float-right' onClick={signInUser}>Log In</Button>
                 }
               </NavItem>
             }

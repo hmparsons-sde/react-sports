@@ -1,13 +1,22 @@
-.card-container {
+#wrestler-cards {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
+  margin-top: 5%;
 
   .card {
     width: 300px;
-    margin: 5px;
+    height: auto;
+    margin: 15px;
+    box-shadow: 10px $hulkHogan;
   }
 
   .card-body {
     flex: none;
   }
+}
+
+#wrestlerImg {
+  width: 100%;
+  object-fit: fill;
 }
