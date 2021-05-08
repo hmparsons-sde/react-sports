@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Button, Form, FormGroup, Label, Input
+  Button, Form, FormGroup, Input
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { addWrestler, updateWrestler } from '../helpers/data/wrestlerData';
@@ -40,7 +40,6 @@ const WrestlerForm = ({
       <Form id='addWrestlerForm' autoComplete='off' onSubmit={handleSubmit}>
         <h2>{formTitle}</h2>
         <FormGroup>
-          <Label for="name">Name:</Label>
           <Input
             name='name'
             id='name'
@@ -51,16 +50,15 @@ const WrestlerForm = ({
           />
         </FormGroup>
         <FormGroup>
-        <Label>Image URL: </Label>
          <Input
             name='imageUrl'
             type='text'
+            placeholder='Enter an Image URL'
             value={wrestler.imageUrl}
             onChange={handleInputChange}
           ></Input>
         </FormGroup>
         <FormGroup>
-          <Label for="conference">Conference:</Label>
           <Input
             name='conference'
             id='conference'
@@ -70,7 +68,7 @@ const WrestlerForm = ({
             onChange={handleInputChange}
           />
         </FormGroup>
-        <Button type='submit'>Submit</Button>
+        <Button className='m-2 btn-lg' type='submit'>Submit</Button>
       </Form>
     </div>
   );

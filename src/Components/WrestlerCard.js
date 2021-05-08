@@ -29,12 +29,12 @@ export default function WrestlerCard({ setWrestlers, user, ...wrestler }) {
   return (
     <div>
       <Card body>
-      <CardImg className='mx-auto d-block' id='playerImg' src={wrestler.imageUrl} alt="Card image cap" />
+      <CardImg id='wrestlerImg' src={wrestler.imageUrl} alt="Card image cap" />
         <CardSubtitle tag="h5" className='mt-3'>{wrestler.name}</CardSubtitle>
         <CardText>Conference: {wrestler.conference}</CardText>
         <div id='buttons'>
         <Button color="danger" onClick={() => handleClick('delete')}>Delete Wrestler</Button>
-        <Button color="info" onClick={() => handleClick('edit')}>
+        <Button className="ml-1" color="info" onClick={() => handleClick('edit')}>
           {editing ? 'Close Form' : 'Edit Wrestler'}
         </Button>
         </div>

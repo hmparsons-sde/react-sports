@@ -5,7 +5,7 @@ import WrestlerCard from '../Components/WrestlerCard';
 export default function WrestlerView({ user, wrestlers, setWrestlers }) {
   return (
     <>
-      <div className="card-container">
+      <div className="card-container" id="wrestler-cards">
         {wrestlers.map((wrestler) => (
           <WrestlerCard
             key={wrestler.firebaseKey}
